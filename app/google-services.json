@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "296492241086",
+    "project_id": "instagram-f4806",
+    "storage_bucket": "instagram-f4806.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:296492241086:android:b00b142237c0dc8ed68eef",
+        "android_client_info": {
+          "package_name": "com.cdaguiar.instagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFuxkQT-0wglJ-iGUe_umVSpXqCcrYPhc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
