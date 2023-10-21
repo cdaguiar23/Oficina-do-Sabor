@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Instagram</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="FeedFragment">Feed</string>
 </resources>
