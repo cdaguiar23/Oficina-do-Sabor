@@ -21,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText campoemail, campoSenha;
+    private EditText campoEmail, campoSenha;
     private Button botaoEntrar;
     private ProgressBar progressBar;
     private Usuario usuario;
@@ -38,11 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.GONE);
         botaoEntrar.setOnClickListener(new View.OnClickListener() {
 
-            String textoEmail = campoemail.getText().toString();
-            String textoSenha = campoSenha.getText().toString();
-
             @Override
             public void onClick(View v) {
+                String textoEmail = campoEmail.getText().toString();
+                String textoSenha = campoSenha.getText().toString();
+
                 if (!textoEmail.isEmpty()) {
                     if (!textoSenha.isEmpty()) {
                         usuario = new Usuario();
@@ -50,8 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                         usuario.setSenha(textoSenha);
                         validarLogin(usuario);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Preenchaa a senha!", Toast.LENGTH_SHORT).show();
-
+                        Toast.makeText(LoginActivity.this, "Preencha a senha!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(LoginActivity.this, "Preenchaa o e-mail!", Toast.LENGTH_SHORT).show();
@@ -92,12 +91,12 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes() {
-        campoemail = findViewById(R.id.editLoginEmail);
+        campoEmail = findViewById(R.id.editLoginEmail);
         campoSenha = findViewById(R.id.editLoginSenha);
         botaoEntrar = findViewById(R.id.buttonEntrar);
         progressBar = findViewById(R.id.progressLogin);
 
-        campoemail.requestFocus();
+        campoEmail.requestFocus();
     }
 
 }
