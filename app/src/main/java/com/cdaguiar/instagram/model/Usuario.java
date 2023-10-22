@@ -1,5 +1,9 @@
 package com.cdaguiar.instagram.model;
 
+import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+
 public class Usuario {
 
     private String id;
@@ -11,6 +15,12 @@ public class Usuario {
     public Usuario() {
     }
 
+
+    public  void salvar() {
+        DatabaseReference firebaseRef= ConfiguracaoFirebase.getFirebase();
+        DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(getId());
+        usuarioRef.setValue(this);
+    }
     public String getId() {
         return id;
     }
@@ -35,6 +45,7 @@ public class Usuario {
         this.email = email;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
