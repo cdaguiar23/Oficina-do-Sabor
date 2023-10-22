@@ -78,7 +78,7 @@ public class PerfilFragment extends Fragment {
 
         // Configurações dos componenetes
         progressBar = view.findViewById(R.id.progressBarPerfil);
-        imagePerfil = view.findViewById(R.id.imagePerfil);
+        imagePerfil = view.findViewById(R.id.imageEditarPerfil);
         gridViewPerfil = view.findViewById(R.id.gridViewPerfil);
         textPublicacoes = view.findViewById(R.id.textPublicacoes);
         textSeguidores = view.findViewById(R.id.textSeguidores);
