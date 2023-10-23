@@ -3,10 +3,13 @@ package com.cdaguiar.instagram.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
 import com.cdaguiar.instagram.R;
 
@@ -25,6 +28,10 @@ public class PesquisaFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    // Widget
+    private SearchView searchViewPesquisa;
+    private RecyclerView recyclerViewPesquisa;
 
     public PesquisaFragment() {
         // Required empty public constructor
@@ -61,6 +68,24 @@ public class PesquisaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_pesquisa, container, false);
+        View view =  inflater.inflate(R.layout.fragment_pesquisa, container, false);
+
+        searchViewPesquisa = view.findViewById(R.id.searchViewPesquisa);
+        recyclerViewPesquisa = view.findViewById(R.id.recyclerViewPesquisa);
+
+        // Configurar SearchView
+        searchViewPesquisa.setQueryHint("Buscar usuários");
+        searchViewPesquisa.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return true;
+            }
+        });
+        return view;
     }
 }
