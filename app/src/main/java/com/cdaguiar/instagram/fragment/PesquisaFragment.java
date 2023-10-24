@@ -1,5 +1,6 @@
 package com.cdaguiar.instagram.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.SearchView;
 
 import com.cdaguiar.instagram.R;
+import com.cdaguiar.instagram.activity.PerfilAmigoActivity;
 import com.cdaguiar.instagram.adapter.AdapterPesquisa;
 import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
+import com.cdaguiar.instagram.helper.RecyclerItemClickListener;
 import com.cdaguiar.instagram.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -98,6 +102,27 @@ public class PesquisaFragment extends Fragment {
         recyclerViewPesquisa.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapterPesquisa = new AdapterPesquisa(listaUsuarios, getActivity());
         recyclerViewPesquisa.setAdapter(adapterPesquisa);
+
+        // Configurar evento de clique
+        recyclerViewPesquisa.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), recyclerViewPesquisa, new RecyclerItemClickListener.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Usuario usuarioSelecionado = listaUsuarios.get(position);
+                Intent i = new Intent(getActivity(), PerfilAmigoActivity.class);
+                i.putExtra("usuarioSelecionado", usuarioSelecionado);
+                startActivity(i);
+            }
+
+            @Override
+            public void onLongItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        }));
 
         // Configurar SearchView
         searchViewPesquisa.setQueryHint("Buscar usuários");
