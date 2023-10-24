@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.cdaguiar.instagram.R;
+import com.cdaguiar.instagram.adapter.AdapterPesquisa;
 import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
 import com.cdaguiar.instagram.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
@@ -45,6 +47,7 @@ public class PesquisaFragment extends Fragment {
     private RecyclerView recyclerViewPesquisa;
     private List<Usuario> listaUsuarios;
     private DatabaseReference usuariosRef;
+    private AdapterPesquisa adapterPesquisa;
 
     public PesquisaFragment() {
         // Required empty public constructor
@@ -90,6 +93,12 @@ public class PesquisaFragment extends Fragment {
         listaUsuarios = new ArrayList<>();
         usuariosRef = ConfiguracaoFirebase.getFirebase().child("usuarios");
 
+        // Configurar RecyclerView
+        recyclerViewPesquisa.setHasFixedSize(true);
+        recyclerViewPesquisa.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapterPesquisa = new AdapterPesquisa(listaUsuarios, getActivity());
+        recyclerViewPesquisa.setAdapter(adapterPesquisa);
+
         // Configurar SearchView
         searchViewPesquisa.setQueryHint("Buscar usuários");
         searchViewPesquisa.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -113,16 +122,20 @@ public class PesquisaFragment extends Fragment {
         listaUsuarios.clear();
 
         // Pesquisar usuários caso texto na pesquisa
-        if (texto.length() > 0) {
+        if (texto.length() >= 2) {
             Query query = usuariosRef.orderByChild("nome").startAt(texto).endAt(texto + "\uf8ff");
             query.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    // Limpar a lista
+                    listaUsuarios.clear();
+
                     for (DataSnapshot ds : snapshot.getChildren()) {
                         listaUsuarios.add(ds.getValue(Usuario.class));
                     }
-                    int total = listaUsuarios.size();
-                    Log.i("totalusuarios", "total" + total);
+                    adapterPesquisa.notifyDataSetChanged();
+//                    int total = listaUsuarios.size();
+//                    Log.i("totalusuarios", "total" + total);
                 }
 
                 @Override
