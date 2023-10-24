@@ -12,16 +12,16 @@ import com.cdaguiar.instagram.model.Usuario;
 public class PerfilAmigoActivity extends AppCompatActivity {
 
     private Usuario usuarioSelecionado;
-    private Button buttonacaoPerfil;
+    private Button buttonAcaoPerfil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_perfil_amigo);
 
         // Inicializar componentes
-        buttonacaoPerfil = findViewById(R.id.buttonAcaoPerfil);
-        buttonacaoPerfil.setText("Seguir");
+        buttonAcaoPerfil = findViewById(R.id.buttonAcaoPerfil);
+        buttonAcaoPerfil.setText("Seguir");
 
         // Configurar toolbar
         Toolbar toolbar = findViewById(R.id.toolbarPrincipal);
@@ -31,7 +31,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close_black_24dp);
 
-        // Recuperar usuaário selecionado
+        // Recuperar usuário selecionado
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             usuarioSelecionado = (Usuario) bundle.getSerializable("usuarioSelecionado");
