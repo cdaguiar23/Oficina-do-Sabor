@@ -2,6 +2,7 @@ package com.cdaguiar.instagram.fragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +13,16 @@ import android.view.ViewGroup;
 import android.widget.SearchView;
 
 import com.cdaguiar.instagram.R;
+import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
+import com.cdaguiar.instagram.model.Usuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +43,8 @@ public class PesquisaFragment extends Fragment {
     // Widget
     private SearchView searchViewPesquisa;
     private RecyclerView recyclerViewPesquisa;
+    private List<Usuario> listaUsuarios;
+    private DatabaseReference usuariosRef;
 
     public PesquisaFragment() {
         // Required empty public constructor
@@ -73,6 +86,10 @@ public class PesquisaFragment extends Fragment {
         searchViewPesquisa = view.findViewById(R.id.searchViewPesquisa);
         recyclerViewPesquisa = view.findViewById(R.id.recyclerViewPesquisa);
 
+        // Configurações iniciais
+        listaUsuarios = new ArrayList<>();
+        usuariosRef = ConfiguracaoFirebase.getFirebase().child("usuarios");
+
         // Configurar SearchView
         searchViewPesquisa.setQueryHint("Buscar usuários");
         searchViewPesquisa.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -83,9 +100,36 @@ public class PesquisaFragment extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                String textoDigitado = newText.toUpperCase();
+                pesquisarUsuarios(textoDigitado);
                 return true;
             }
         });
         return view;
+    }
+
+    private void pesquisarUsuarios(String texto) {
+        // Limpar lista
+        listaUsuarios.clear();
+
+        // Pesquisar usuários caso texto na pesquisa
+        if (texto.length() > 0) {
+            Query query = usuariosRef.orderByChild("nome").startAt(texto).endAt(texto + "\uf8ff");
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        listaUsuarios.add(ds.getValue(Usuario.class));
+                    }
+                    int total = listaUsuarios.size();
+                    Log.i("totalusuarios", "total" + total);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
     }
 }
