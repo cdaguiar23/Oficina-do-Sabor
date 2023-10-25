@@ -20,6 +20,7 @@ import com.cdaguiar.instagram.activity.PerfilAmigoActivity;
 import com.cdaguiar.instagram.adapter.AdapterPesquisa;
 import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
 import com.cdaguiar.instagram.helper.RecyclerItemClickListener;
+import com.cdaguiar.instagram.helper.UsuarioFirebase;
 import com.cdaguiar.instagram.model.Usuario;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -52,6 +53,7 @@ public class PesquisaFragment extends Fragment {
     private List<Usuario> listaUsuarios;
     private DatabaseReference usuariosRef;
     private AdapterPesquisa adapterPesquisa;
+    private String idUsuarioLogado;
 
     public PesquisaFragment() {
         // Required empty public constructor
@@ -96,6 +98,7 @@ public class PesquisaFragment extends Fragment {
         // Configurações iniciais
         listaUsuarios = new ArrayList<>();
         usuariosRef = ConfiguracaoFirebase.getFirebase().child("usuarios");
+        idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
 
         // Configurar RecyclerView
         recyclerViewPesquisa.setHasFixedSize(true);
@@ -156,8 +159,15 @@ public class PesquisaFragment extends Fragment {
                     listaUsuarios.clear();
 
                     for (DataSnapshot ds : snapshot.getChildren()) {
-                        listaUsuarios.add(ds.getValue(Usuario.class));
+                        // Verifica se é usuário logado e remove da lista
+                        Usuario usuario = ds.getValue(Usuario.class);
+                        if (idUsuarioLogado.equals(usuario.getId())) {
+                            continue;
+                        }
+                        listaUsuarios.add(usuario);
                     }
+
+                    // adiciona usuário na lista
                     adapterPesquisa.notifyDataSetChanged();
 //                    int total = listaUsuarios.size();
 //                    Log.i("totalusuarios", "total" + total);
