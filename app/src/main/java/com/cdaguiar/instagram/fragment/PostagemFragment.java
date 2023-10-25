@@ -3,9 +3,12 @@ package com.cdaguiar.instagram.fragment;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
@@ -15,7 +18,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.cdaguiar.instagram.R;
+import com.cdaguiar.instagram.activity.FiltroActivity;
 import com.cdaguiar.instagram.helper.Permissao;
+
+import java.io.ByteArrayOutputStream;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -107,8 +113,45 @@ public class PostagemFragment extends Fragment {
         return  view;
     }
 
+//    @Override
+//    public void onAttach(@NonNull Context context) {
+//        super.onAttach(context);
+//    }
+
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == getActivity().RESULT_OK) {
+
+            Bitmap imagem = null;
+            try {
+                // Valida tipo de seleção de imagem
+                switch (requestCode) {
+                    case SELECAO_CAMERA:
+                        imagem = (Bitmap) data.getExtras().get("data");
+                        break;
+                    case SELECAO_GALERIA:
+                        Uri localImagemSelecionada = data.getData();
+                        imagem = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), localImagemSelecionada);
+                        break;
+                }
+
+                // Valida imagem selecionada
+                if (imagem != null) {
+                    // Converte imagem em byte array
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    imagem.compress(Bitmap.CompressFormat.JPEG, 70, baos);
+                    byte[] dadosImagem = baos.toByteArray();
+
+                    // Envi aimgem escolhida para plicação de filtro
+                    Intent i = new Intent(getActivity(), FiltroActivity.class);
+                    i.putExtra("fotoEscolhida", dadosImagem);
+                    startActivity(i);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
     }
 }
