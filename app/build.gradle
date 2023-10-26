@@ -56,6 +56,6 @@ dependencies {
     //Dependências AndroidPhotoFilter
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 //        implementation 'info.androidhive:imagefilters:1.0.7'
-//        implementation 'com.github.zomato:androidphotofilters:1.0.2'
+        implementation 'com.github.zomato:androidphotofilters:1.0.2'
 
 }

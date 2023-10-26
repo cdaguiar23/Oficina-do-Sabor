@@ -44,16 +44,10 @@ public class FiltroActivity extends AppCompatActivity {
         if (bundle != null) {
             byte[] dadosImagem = bundle.getByteArray("fotoEscolhida");
             imagem = BitmapFactory.decodeByteArray(dadosImagem, 0, dadosImagem.length);
-            Bitmap copyBitmap = imagem.copy(Bitmap.Config.ARGB_8888, true);
-            // ...
-        } else {
-            System.out.println("Bitmap é vazio");            imageFotoEscolhida.setImageBitmap(imagem);
+            imageFotoEscolhida.setImageBitmap(imagem);
 
-            if (imagem != null) {
-                // Faça as operações com o bitmap aqui
 
-            }
-            imagemFiltro.copy(imagem.getConfig(), true);
+//            imagemFiltro.copy(imagem.getConfig(), true);
 //            Filter filter = FilterPack.getAdeleFilter(getApplicationContext());
 //            imageFotoEscolhida.setImageBitmap(filter.processFilter(imagemFiltro));
         }
