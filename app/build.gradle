@@ -58,4 +58,10 @@ dependencies {
 //        implementation 'info.androidhive:imagefilters:1.0.7'
         implementation 'com.github.zomato:androidphotofilters:1.0.2'
 
+    // Dependências da lib Universal Image Loader
+    implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+
+    // Dependências para Square Image View
+
+
 }
