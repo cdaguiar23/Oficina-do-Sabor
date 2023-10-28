@@ -4,9 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -51,6 +53,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
     private DatabaseReference postagensUsuarioRef;
     private GridView gridViewPerfil;
     private AdapterGrid adapterGrid;
+    private List<Postagem> postagens;
 
 
     @Override
@@ -99,6 +102,18 @@ public class PerfilAmigoActivity extends AppCompatActivity {
 
         // Carrega as fotos das postagens de um usuário
         carregarFotosPostagem();
+
+        // Abre a foto clicada
+        gridViewPerfil.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Postagem postagem = postagens.get(position);
+                Intent i = new Intent(getApplicationContext(), VisualizarPostagemActivity.class);
+                i.putExtra("postagem", postagem);
+                i.putExtra("usuario", usuarioSelecionado);
+                startActivity(i);
+            }
+        });
     }
 
     // Instancia a Universal Image Loader
@@ -116,6 +131,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
 
     public void carregarFotosPostagem() {
         // Recupera as fotos postadas pelo usuário
+        postagens = new ArrayList<>();
         postagensUsuarioRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -129,6 +145,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
                 List<String> urlFotos = new ArrayList<>();
                 for (DataSnapshot ds : snapshot.getChildren()) {
                     Postagem postagem = ds.getValue(Postagem.class);
+                    postagens.add(postagem);
                     urlFotos.add(postagem.getCaminhoFoto());
                 }
 
