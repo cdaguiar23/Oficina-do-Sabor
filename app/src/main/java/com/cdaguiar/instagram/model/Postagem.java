@@ -1,9 +1,13 @@
 package com.cdaguiar.instagram.model;
 
 import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
+import com.cdaguiar.instagram.helper.UsuarioFirebase;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Postagem implements Serializable {
 
@@ -29,10 +33,34 @@ public class Postagem implements Serializable {
         setId(idPostagem);
     }
 
-    public boolean salvar() {
+    public boolean salvar(DataSnapshot seguidoresSnapshot) {
+        Map objeto = new HashMap<>();
+        Usuario usuarioLogado = UsuarioFirebase.getDadoUsuarioLogado();
         DatabaseReference firebaseRef = ConfiguracaoFirebase.getFirebase();
-        DatabaseReference postagensRef = firebaseRef.child("postagens").child(getIdUsuario()).child(getId());
-        postagensRef.setValue(this);
+
+        // Referência para posagens
+        String combinacaoId = "/" + getIdUsuario() + "/" + getId();
+        objeto.put("/postagens" + combinacaoId, this);
+
+
+        // referência para a postagem
+        for (DataSnapshot seguidores : seguidoresSnapshot.getChildren()) {
+
+            String idSeguidor = seguidores.getKey();
+            // fed, id_seguidor<jose renato>, id_postagem, postagem<por claudionei>
+            // Monta objeto para salvar
+            HashMap<String, Object> dadosSeguidor=  new HashMap<>();
+            dadosSeguidor.put("fotoPostagem", getCaminhoFoto());
+            dadosSeguidor.put("descricao", getDescricao());
+            dadosSeguidor.put("id", getId());
+            dadosSeguidor.put("nome", usuarioLogado.getNome());
+            dadosSeguidor.put("fotousuario", usuarioLogado.getCaminhoFoto());
+
+            String idsAtualizacao = "/" + idSeguidor + "/" + getId();
+            objeto.put("/fedd" + idsAtualizacao, dadosSeguidor);
+        }
+        firebaseRef.updateChildren(objeto);
+
         return true;
     }
 
