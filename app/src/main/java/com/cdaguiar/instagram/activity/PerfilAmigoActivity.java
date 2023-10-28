@@ -183,7 +183,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
     }
 
     private void verificaSegueUsuarioAmigo() {
-        DatabaseReference seguidorRef = seguidoresRef.child(idUsuarioLogado).child(usuarioSelecionado.getId());
+        DatabaseReference seguidorRef = seguidoresRef.child(usuarioSelecionado.getId()).child(idUsuarioLogado);
         seguidorRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -221,11 +221,11 @@ public class PerfilAmigoActivity extends AppCompatActivity {
     }
 
     private void salvarSeguidor(Usuario uLogado, Usuario uAmigo) {
-        HashMap<String, Object> dadosAmigo = new HashMap<>();
-        dadosAmigo.put("nome", uAmigo.getNome());
-        dadosAmigo.put("caminhoFoto", uAmigo.getCaminhoFoto());
-        DatabaseReference seguidorRef = seguidoresRef.child(uLogado.getId()).child(uAmigo.getId());
-        seguidorRef.setValue(dadosAmigo);
+        HashMap<String, Object> dadosUsuarioLagado = new HashMap<>();
+        dadosUsuarioLagado.put("nome", uLogado.getNome());
+        dadosUsuarioLagado.put("caminhoFoto", uLogado.getCaminhoFoto());
+        DatabaseReference seguidorRef = seguidoresRef.child(uAmigo.getId()).child(uLogado.getId());
+        seguidorRef.setValue(dadosUsuarioLagado);
 
         // Alterar botão ação para seguindo
         buttonAcaoPerfil.setText("Seguindo");
