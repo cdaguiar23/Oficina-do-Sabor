@@ -160,7 +160,7 @@ public class PerfilFragment extends Fragment {
         });
     }
 
-    public void carregarFotosPostagem() {
+    public void  carregarFotosPostagem() {
         // Recupera as fotos postadas pelo usuário
         postagensUsuarioRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
