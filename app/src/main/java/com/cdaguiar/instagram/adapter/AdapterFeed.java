@@ -1,6 +1,7 @@
 package com.cdaguiar.instagram.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cdaguiar.instagram.R;
+import com.cdaguiar.instagram.activity.ComentariosActivity;
 import com.cdaguiar.instagram.helper.ConfiguracaoFirebase;
 import com.cdaguiar.instagram.helper.UsuarioFirebase;
 import com.cdaguiar.instagram.model.Feed;
@@ -47,8 +49,8 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Feed feed = listaFeed.get(position);
-        Usuario usuarioLogado = UsuarioFirebase.getDadoUsuarioLogado();
+        final Feed feed = listaFeed.get(position);
+        final Usuario usuarioLogado = UsuarioFirebase.getDadoUsuarioLogado();
 
         // Carrega dados do feed
         Uri uriFotoUsuario = Uri.parse(feed.getFotoUsuario());
@@ -59,6 +61,16 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
 
         holder.descricao.setText(feed.getDescricao());
         holder.nome.setText(feed.getNomeUsuario());
+
+        // Adiciona eventos de cliqe nso comentários
+        holder.visualizarComentario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, ComentariosActivity.class);
+                i.putExtra("idPostagem", feed.getId());
+                context.startActivity(i);
+            }
+        });
 
         // Estrutura: postagem-curtidas, id_postagem, qtdCurtidas, id_usuario, nome_usuario, caminho_foto
         // Recuperar dados da postagem curtida
@@ -79,7 +91,7 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
                 }
 
                 // Monta objeto postagem curtida
-                PostagemCurtida curtida = new PostagemCurtida();
+                final PostagemCurtida curtida = new PostagemCurtida();
                 curtida.setFeed(feed);
                 curtida.setUsuario(usuarioLogado);
                 curtida.setQtdCurtidas(qtdCurtidas);
