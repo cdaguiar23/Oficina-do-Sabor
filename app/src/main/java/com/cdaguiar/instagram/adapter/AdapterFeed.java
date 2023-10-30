@@ -71,8 +71,14 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
                     PostagemCurtida postagemCurtida = snapshot.getValue(PostagemCurtida.class);
                     qtdCurtidas = postagemCurtida.getQtdCurtidas();
                 }
+                // Verifica se já foi clicado
+                if (snapshot.hasChild(usuarioLogado.getId())) {
+                    holder.likeButton.setLiked(true);
+                } else {
+                    holder.likeButton.setLiked(false);
+                }
 
-                // Monsta objeto postagem curtida
+                // Monta objeto postagem curtida
                 PostagemCurtida curtida = new PostagemCurtida();
                 curtida.setFeed(feed);
                 curtida.setUsuario(usuarioLogado);
@@ -80,16 +86,21 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
 
                 // Adiciona eventos para uma foto
                 holder.likeButton.setOnLikeListener(new OnLikeListener() {
+
                     @Override
                     public void liked(LikeButton likeButton) {
                         curtida.salvar();
+                        holder.qtdCurtidas.setText(curtida.getQtdCurtidas() + "curtidas");
                     }
 
                     @Override
                     public void unLiked(LikeButton likeButton) {
-
+                        curtida.remover();
+                        holder.qtdCurtidas.setText(curtida.getQtdCurtidas() + "curtidas");
                     }
                 });
+
+                holder.qtdCurtidas.setText(curtida.getQtdCurtidas() + "curtidas");
 
             }
 
