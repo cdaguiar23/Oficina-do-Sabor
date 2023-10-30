@@ -84,7 +84,7 @@ public class FeedFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_feed, container, false);
 
-        // Configurações inciais
+        // Configurações iniciais
         idUsuarioLogado = UsuarioFirebase.getIdentificadorUsuario();
         feedRef = ConfiguracaoFirebase.getFirebase().child("feed").child(idUsuarioLogado);
 
