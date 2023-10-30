@@ -17,7 +17,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class VisualizarPostagemActivity extends AppCompatActivity {
 
-    private TextView textPerfilPostagem, textQtdPostagem, textDescricaoPostagem, textVisualizarComentariosPostagem;
+    private TextView textPerfilPostagem, textQtdPostagem, textDescricaoPostagem;
     private ImageView imagePostagemSelecionada;
     private CircleImageView imagePerfilPostagem;
 
@@ -59,7 +59,7 @@ public class VisualizarPostagemActivity extends AppCompatActivity {
         textPerfilPostagem = findViewById(R.id.textPerfilPostagem);
         textQtdPostagem = findViewById(R.id.textQtdCurtidasPostagem);
         textDescricaoPostagem = findViewById(R.id.textDescricaoPostagem);
-        textVisualizarComentariosPostagem = findViewById(R.id.textVisualizarComentario);
+//        textVisualizarComentariosPostagem = findViewById(R.id.textVisualizarComentario);
         imagePostagemSelecionada = findViewById(R.id.imagePostagemSelecionado);
         imagePerfilPostagem = findViewById(R.id.imagePerfilPostagem);
     }

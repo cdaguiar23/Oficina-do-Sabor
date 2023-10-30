@@ -61,7 +61,8 @@ dependencies {
     // Dependências da lib Universal Image Loader
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
-    // Dependências para Square Image View
+    // Dependências para Like Button
+    implementation 'com.github.jd-alexander:LikeButton:0.2.3'
 
 
 }
