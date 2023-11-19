@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.cdaguiar.instagram'
+    namespace 'com.cdaguiar.oficinadosabor'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.cdaguiar.instagram"
+        applicationId "com.cdaguiar.oficinadosabor"
         minSdk 24
         targetSdk 33
         versionCode 1

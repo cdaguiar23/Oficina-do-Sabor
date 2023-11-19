@@ -15,36 +15,36 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/oficina_sabor"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.Instagram"
         tools:targetApi="31">
         <activity
-            android:name=".activity.ComentariosActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.ComentariosActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.VisualizarPostagemActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.VisualizarPostagemActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.FiltroActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.FiltroActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.PerfilAmigoActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.PerfilAmigoActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.EditarPerfilActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.EditarPerfilActivity"
             android:exported="false"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName="com.cdaguiar.oficinadosabor.activity.MainActivity" />
         <activity
-            android:name=".activity.CadastroActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.CadastroActivity"
             android:exported="false"
             android:theme="@style/AppThemeLogin" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".activity.LoginActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.LoginActivity"
             android:exported="true"
             android:theme="@style/AppThemeLogin">
             <intent-filter>

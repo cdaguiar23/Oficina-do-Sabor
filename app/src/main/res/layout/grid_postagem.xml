@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.cdaguiar.instagram.helper.SquareImageView
+    <com.cdaguiar.oficinadosabor.helper.SquareImageView
         android:id="@+id/imageGridPerfil"
         android:layout_width="0dp"
         android:layout_height="200dp"

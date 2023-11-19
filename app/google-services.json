@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "296492241086",
-    "project_id": "instagram-f4806",
-    "storage_bucket": "instagram-f4806.appspot.com"
+    "project_number": "745503643188",
+    "firebase_url": "https://oficina-do-sabor-4df7f-default-rtdb.firebaseio.com",
+    "project_id": "oficina-do-sabor-4df7f",
+    "storage_bucket": "oficina-do-sabor-4df7f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:296492241086:android:b00b142237c0dc8ed68eef",
+        "mobilesdk_app_id": "1:745503643188:android:e2cea92569eaeb8e03dc61",
         "android_client_info": {
-          "package_name": "com.cdaguiar.instagram"
+          "package_name": "com.cdaguiar.oficinadosabor"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAFuxkQT-0wglJ-iGUe_umVSpXqCcrYPhc"
+          "current_key": "AIzaSyBHPcM_n92toeVhvXZFmGojyLvNDktW_bc"
         }
       ],
       "services": {

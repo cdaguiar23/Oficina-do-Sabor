@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         maven { url "https://maven.google.com" }
     }
 }
-rootProject.name = "Instagram"
+rootProject.name = "Oficina do Sabor"
 include ':app'
