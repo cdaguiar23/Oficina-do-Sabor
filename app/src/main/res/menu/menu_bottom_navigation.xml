@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/ic_home"
+        android:id="@+id/produtos"
         android:icon="@drawable/ic_bolo_24dp"
         android:title="Produtos" />
 
     <item
-        android:id="@+id/ic_pesquisa"
-        android:icon="@drawable/ic_pesquisa_preto_24dp"
+        android:id="@+id/carrinho_compras"
+        android:icon="@drawable/ic_carrinho_compras_24dp"
+        android:title="Carrinho Compras" />
+
+    <item
+        android:id="@+id/busca_produtos"
+        android:icon="@drawable/ic_busca_produtos_24dp"
         android:title="Busca Produtos" />
 
     <item
-        android:id="@+id/ic_postagem"
-        android:icon="@drawable/ic_postagem_preto_24dp"
+        android:id="@+id/acesso_administrador"
+        android:icon="@drawable/ic_acesso_admin_24dp"
         android:title="Acesso Administrador" />
 
     <item
-        android:id="@+id/ic_perfil"
-        android:icon="@drawable/ic_perfil_preto_24dp"
-        android:title="Perfil usuário" />
+        android:id="@+id/perfil_usuario"
+        android:icon="@drawable/ic_perfil_usuario_24dp"
+        android:title="Perfil Usuário" />
 </menu>
