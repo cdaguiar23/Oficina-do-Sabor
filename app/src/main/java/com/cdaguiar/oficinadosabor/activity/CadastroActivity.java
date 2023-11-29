@@ -27,8 +27,7 @@ public class CadastroActivity extends AppCompatActivity {
 
     private EditText campoNome, campoEmail, campoSenha;
     private Button botaoCadastrar;
-    private ProgressBar progressBar;
-    private Usuario usuario;
+    private ProgressBar progressBar;    private Usuario usuario;
     private FirebaseAuth autenticacao;
 
     @Override

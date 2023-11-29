@@ -30,7 +30,7 @@
             android:name="com.cdaguiar.oficinadosabor.activity.FiltroActivity"
             android:exported="false" />
         <activity
-            android:name="com.cdaguiar.oficinadosabor.activity.PerfilAmigoActivity"
+            android:name="com.cdaguiar.oficinadosabor.activity.PerfilUsuarioActivity"
             android:exported="false" />
         <activity
             android:name="com.cdaguiar.oficinadosabor.activity.EditarPerfilActivity"

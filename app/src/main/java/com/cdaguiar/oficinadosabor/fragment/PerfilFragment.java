@@ -37,25 +37,14 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link PerfilFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class PerfilFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
     private ProgressBar progressBar;
     private CircleImageView imagePerfil;
     public GridView gridViewPerfil;
-    private TextView textPublicacoes, textSeguidores, textSeguindo;
+    private TextView textPublicacoes, textSeguidores, textSeguindo, textViewNome, textViewEndereco, textViewBairro, textViewCidade, textViewEstado, textViewEmail, textViewTelefone;
     private Button buttonAcaoPerfil;
     private Usuario usuarioLogado;
     private DatabaseReference usuariosRef;
@@ -64,37 +53,6 @@ public class PerfilFragment extends Fragment {
     private DatabaseReference firebaseRef;
     private DatabaseReference postagensUsuarioRef;
     private AdapterGrid adapterGrid;
-
-    public PerfilFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment PerfilFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static PerfilFragment newInstance(String param1, String param2) {
-        PerfilFragment fragment = new PerfilFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -125,7 +83,7 @@ public class PerfilFragment extends Fragment {
         incializarImageLoader();
 
         //Carrega as fotos das postagens de um usuário
-        carregarFotosPostagem();
+//        carregarFotosPostagem();
 
         return  view;
     }
@@ -199,11 +157,16 @@ public class PerfilFragment extends Fragment {
     private void inicializarComponentes(View view) {
         progressBar = view.findViewById(R.id.progressBarPerfil);
         imagePerfil = view.findViewById(R.id.imageEditarPerfil);
-        gridViewPerfil = view.findViewById(R.id.gridViewPerfil);
-        textPublicacoes = view.findViewById(R.id.textPublicacoes);
-        textSeguidores = view.findViewById(R.id.textSeguidores);
-        textSeguindo = view.findViewById(R.id.textSeguindo);
         buttonAcaoPerfil = view.findViewById(R.id.buttonAcaoPerfil);
+        textViewNome = view.findViewById(R.id.textViewNome);
+        textViewEndereco = view.findViewById(R.id.textViewEndereco);
+        textViewBairro = view.findViewById(R.id.textViewBairro);
+        textViewCidade = view.findViewById(R.id.textViewCidade);
+        textViewEstado = view.findViewById(R.id.textViewEstado);
+        textViewTelefone = view.findViewById(R.id.textViewTelefone);
+        textViewEmail = view.findViewById(R.id.textViewEmail);
+
+
     }
 
     @Override
@@ -213,13 +176,13 @@ public class PerfilFragment extends Fragment {
         recuperarFotoUsuario();
 
         // Recueprar dados do usuário logado
-        recuperarDadosUsuarioLogado();
+//        recuperarDadosUsuarioLogado();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        usuarioLogadoRef.removeEventListener(valueEventListenerPerfil);
+//        usuarioLogadoRef.removeEventListener(valueEventListenerPerfil);
     }
 
     private  void recuperarFotoUsuario() {
@@ -232,4 +195,57 @@ public class PerfilFragment extends Fragment {
             Glide.with(getActivity()).load(url).into(imagePerfil);
         }
     }
+
+    private void exibirInformacoesUsuario(Usuario usuario) {
+
+        // Verifica se o usuário tem informações de nome, e-mail e endereço
+        if (usuario.getNome() != null) {
+            textViewNome.setText("Nome: " + usuario.getNome());
+        }
+
+        if (usuario.getEmail() != null) {
+            textViewEmail.setText("E-mail: " + usuario.getEmail());
+        }
+
+        // Recupera informações adicionais do usuário
+        DatabaseReference usuarioInfoRef = ConfiguracaoFirebase.getFirebase().child("informacoes_usuarios").child(usuario.getId());
+        usuarioInfoRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Se as informações adicionais do usuário existirem no Firebase, atualize os TextViews
+                    Usuario usuario = snapshot.getValue(Usuario.class);
+
+                    if (usuario.getEndereco() != null) {
+                        textViewEndereco.setText("Endereço: " + usuario.getEndereco());
+                    }
+
+                    if (usuario.getBairro() != null) {
+                        textViewBairro.setText("Bairro: " + usuario.getBairro());
+                    }
+
+                    if (usuario.getCidade() != null) {
+                        textViewCidade.setText("Cidade: " + usuario.getCidade());
+                    }
+
+                    if (usuario.getEstado() != null) {
+                        textViewEstado.setText("Estado: " + usuario.getEstado());
+                    }
+
+                    if (usuario.getTelefone() != null) {
+                        textViewTelefone.setText("Telefone: " + usuario.getTelefone());
+                    }
+
+                    if (usuario.getEmail() != null) {
+                        textViewTelefone.setText("Telefone: " + usuario.getEmail());
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Trate o erro, se necessário
+            }
+        });
+    }
+
 }

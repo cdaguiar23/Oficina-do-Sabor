@@ -17,8 +17,8 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imageEditarPerfil"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="122dp"
+            android:layout_height="105dp"
             android:src="@drawable/avatar" />
 
         <TextView
@@ -32,7 +32,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editNomePerfil"
@@ -46,7 +46,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmailPerfil"
@@ -55,6 +55,78 @@
                 android:drawableLeft="@drawable/ic_email_black_24"
                 android:drawableTint="@android:color/darker_gray"
                 android:hint="Email" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editEnderecoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_endereco_24dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Endereço" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editBairroPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_rua_24dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Bairro" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editCidadePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_cidade_24dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Cidade" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editNomeEstadoPerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_estado_24dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Estado" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTelefonePerfil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_telefone_24dp"
+                android:drawableTint="@android:color/darker_gray"
+                android:hint="Telefone" />
+
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

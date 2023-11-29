@@ -20,7 +20,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText campoEmail, campoSenha;
     private Button botaoEntrar;
     private ProgressBar progressBar;

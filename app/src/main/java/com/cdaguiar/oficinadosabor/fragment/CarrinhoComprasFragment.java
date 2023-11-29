@@ -15,7 +15,7 @@ import android.widget.AdapterView;
 import android.widget.SearchView;
 
 import com.cdaguiar.oficinadosabor.R;
-import com.cdaguiar.oficinadosabor.activity.PerfilAmigoActivity;
+import com.cdaguiar.oficinadosabor.activity.PerfilUsuarioActivity;
 import com.cdaguiar.oficinadosabor.adapter.AdapterPesquisa;
 import com.cdaguiar.oficinadosabor.helper.ConfiguracaoFirebase;
 import com.cdaguiar.oficinadosabor.helper.RecyclerItemClickListener;
@@ -32,10 +32,10 @@ import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PesquisaFragment#newInstance} factory method to
+ * Use the {@link CarrinhoComprasFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PesquisaFragment extends Fragment {
+public class CarrinhoComprasFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,7 +54,7 @@ public class PesquisaFragment extends Fragment {
     private AdapterPesquisa adapterPesquisa;
     private String idUsuarioLogado;
 
-    public PesquisaFragment() {
+    public CarrinhoComprasFragment() {
         // Required empty public constructor
     }
 
@@ -64,11 +64,11 @@ public class PesquisaFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment PesquisaFragment.
+     * @return A new instance of fragment CarrinhoComprasFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static PesquisaFragment newInstance(String param1, String param2) {
-        PesquisaFragment fragment = new PesquisaFragment();
+    public static CarrinhoComprasFragment newInstance(String param1, String param2) {
+        CarrinhoComprasFragment fragment = new CarrinhoComprasFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -110,7 +110,7 @@ public class PesquisaFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 Usuario usuarioSelecionado = listaUsuarios.get(position);
-                Intent i = new Intent(getActivity(), PerfilAmigoActivity.class);
+                Intent i = new Intent(getActivity(), PerfilUsuarioActivity.class);
                 i.putExtra("usuarioSelecionado", usuarioSelecionado);
                 startActivity(i);
             }

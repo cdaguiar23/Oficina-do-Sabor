@@ -15,10 +15,10 @@ import android.view.MenuItem;
 
 import com.cdaguiar.oficinadosabor.R;
 import com.cdaguiar.oficinadosabor.fragment.AcessoAdministradorFragment;
-import com.cdaguiar.oficinadosabor.fragment.FeedFragment;
+import com.cdaguiar.oficinadosabor.fragment.CarrinhoComprasFragment;
+import com.cdaguiar.oficinadosabor.fragment.ProdutosFragment;
 import com.cdaguiar.oficinadosabor.fragment.PerfilFragment;
-import com.cdaguiar.oficinadosabor.fragment.PesquisaFragment;
-import com.cdaguiar.oficinadosabor.fragment.PostagemFragment;
+import com.cdaguiar.oficinadosabor.fragment.BuscaProdutosFragment;
 import com.cdaguiar.oficinadosabor.helper.ConfiguracaoFirebase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         configuraBottomNavigationView();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.viewPager, new FeedFragment()).commit();
+        fragmentTransaction.replace(R.id.viewPager, new ProdutosFragment()).commit();
 
     }
 
@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.produtos:
-                    fragmentTransaction.replace(R.id.viewPager, new FeedFragment()).commit();
+                    fragmentTransaction.replace(R.id.viewPager, new ProdutosFragment()).commit();
                     return true;
                 case R.id.carrinho_compras:
-                    fragmentTransaction.replace(R.id.viewPager, new PesquisaFragment()).commit();
+                    fragmentTransaction.replace(R.id.viewPager, new CarrinhoComprasFragment()).commit();
                     return true;
                 case R.id.busca_produtos:
-                    fragmentTransaction.replace(R.id.viewPager, new PostagemFragment()).commit();
+                    fragmentTransaction.replace(R.id.viewPager, new BuscaProdutosFragment()).commit();
                     return true;
                 case R.id.acesso_administrador:
                     fragmentTransaction.replace(R.id.viewPager, new AcessoAdministradorFragment()).commit();

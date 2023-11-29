@@ -35,7 +35,7 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class PerfilAmigoActivity extends AppCompatActivity {
+public class PerfilUsuarioActivity extends AppCompatActivity {
 
     private Usuario usuarioSelecionado;
     private Button buttonAcaoPerfil;
@@ -59,7 +59,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_perfil_amigo);
+        setContentView(R.layout.activity_perfil_usuario);
 
         // Configurações inciiais
         firebaseRef = ConfiguracaoFirebase.getFirebase();
@@ -93,7 +93,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
             String caminhoFoto = usuarioSelecionado.getCaminhoFoto();
             if (caminhoFoto != null) {
                 Uri url = Uri.parse(caminhoFoto);
-                Glide.with(PerfilAmigoActivity.this).load(url).into(imagePerfil);
+                Glide.with(PerfilUsuarioActivity.this).load(url).into(imagePerfil);
             }
         }
 
@@ -101,7 +101,7 @@ public class PerfilAmigoActivity extends AppCompatActivity {
         inicializaImageLoader();
 
         // Carrega as fotos das postagens de um usuário
-        carregarFotosPostagem();
+//        carregarFotosPostagem();
 
         // Abre a foto clicada
         gridViewPerfil.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -294,11 +294,8 @@ public class PerfilAmigoActivity extends AppCompatActivity {
 
     private void inicializarComponentes() {
         imagePerfil = findViewById(R.id.imageEditarPerfil);
-        gridViewPerfil = findViewById(R.id.gridViewPerfil);
         buttonAcaoPerfil = findViewById(R.id.buttonAcaoPerfil);
-        textPublicacoes = findViewById(R.id.textPublicacoes);
-        textSeguidores = findViewById(R.id.textSeguidores);
-        textSeguindo = findViewById(R.id.textSeguindo);
         buttonAcaoPerfil.setText("Carregando");
     }
+
 }

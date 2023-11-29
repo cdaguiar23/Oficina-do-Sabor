@@ -39,8 +39,8 @@ public class EditarPerfilActivity extends AppCompatActivity {
 
     private CircleImageView imageEditarPerfil;
     private TextView textAlterarFoto;
-    private TextInputEditText editNomePerfil, editEmailPerfil;
-    private Button buttonSalavarAlteracoes;
+    private TextInputEditText editNomePerfil, editEmailPerfil, editEnderecoPerfil, editBairroPerfil, editCidadePerfil, editEstadoPerfil, editTelefonePerifl;
+    private Button buttonSavarAlteracoes;
     private Usuario usuarioLoagado;
     private static final int SELECAO_GALAERIA = 200;
     private StorageReference storageRef;
@@ -84,7 +84,7 @@ public class EditarPerfilActivity extends AppCompatActivity {
         }
 
         // Salvar alterações do nome
-        buttonSalavarAlteracoes.setOnClickListener(new View.OnClickListener() {
+        buttonSavarAlteracoes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String nomeAtualizado = editNomePerfil.getText().toString();
@@ -186,8 +186,15 @@ public class EditarPerfilActivity extends AppCompatActivity {
         textAlterarFoto = findViewById(R.id.textAlterarFoto);
         editNomePerfil = findViewById(R.id.editNomePerfil);
         editEmailPerfil = findViewById(R.id.editEmailPerfil);
-        buttonSalavarAlteracoes = findViewById(R.id.buttonSalvarAlteracoes);
+
+        editEnderecoPerfil = findViewById(R.id.editEnderecoPerfil);
+        editBairroPerfil = findViewById(R.id.editBairroPerfil);
+        editCidadePerfil = findViewById(R.id.editCidadePerfil);
+        editEstadoPerfil = findViewById(R.id.editNomeEstadoPerfil);
+        editTelefonePerifl = findViewById(R.id.editTelefonePerfil);
+        buttonSavarAlteracoes = findViewById(R.id.buttonSalvarAlteracoes);
         editEmailPerfil.setFocusable(false);
+
 
     }
 
